@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Yaşam Çarkı – Zoetrope | AR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#e8e8e8">
+<script src="assets/aframe.min.js"></script>
+<script>window.AFRAME||document.write('<script src="https://cdn.jsdelivr.net/npm/aframe@1.5.0/dist/aframe.min.js"><\/script>')</script>
+<script src="assets/mindar-image-aframe.prod.js"></script>
+<script>(window.AFRAME&&AFRAME.components['mindar-image'])||document.write('<script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"><\/script>')</script>
+<style>
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5/files/montserrat-latin-ext-900-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:900;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/montserrat@5/files/montserrat-latin-900-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:500;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-ext-500-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:500;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-500-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Urbanist';font-style:italic;font-weight:500;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-ext-500-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Urbanist';font-style:italic;font-weight:500;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-500-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:600;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-ext-600-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:600;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-600-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Urbanist';font-style:italic;font-weight:600;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-ext-600-italic.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'Urbanist';font-style:italic;font-weight:600;font-display:swap;src:url(https://cdn.jsdelivr.net/npm/@fontsource/urbanist@5/files/urbanist-latin-600-italic.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+
+  :root { --red:#ed2a2e; --ink:#000; --bg:#e8e8e8; --body:'Urbanist',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; --head:'Montserrat','Arial Black',Arial,sans-serif; }
+  * { box-sizing:border-box; }
+  html,body { margin:0; height:100%; background:#000; font-family:var(--body); overflow:hidden; }
+  a-scene { position:fixed; inset:0; }
+  .layer { position:fixed; inset:0; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center;
+           padding:24px; text-align:center; background:var(--bg); color:var(--ink); }
+  .layer[hidden] { display:none; }
+
+  /* Başlık + damga (tasarıma göre) – sadece burada Montserrat */
+  .brand { font-size:clamp(26px, 9vw, 64px); }
+  .brand .ttl { position:relative; display:inline-block; margin:1.3em 1.7em 0 0; }
+  .brand h1 { margin:0; font-family:var(--head); font-weight:900; font-size:1em; line-height:1; letter-spacing:0; color:#000; white-space:nowrap; text-transform:uppercase; }
+  .stamp { position:absolute; left:30%; bottom:.74em; transform:rotate(6.5deg); transform-origin:50% 50%;
+           border:.085em solid var(--red); border-radius:.2em; padding:.06em .13em .08em; color:var(--red);
+           font-family:var(--head); font-weight:900; font-size:1.02em; line-height:1; white-space:nowrap; letter-spacing:.005em; }
+  .stamp svg.star { position:absolute; left:100%; bottom:100%; width:10.6%; height:auto; margin-bottom:-1.7%; overflow:visible; }
+
+  /* Diğer tüm yazılar Urbanist */
+  p.lead { max-width:min(86vw, 17.5em); margin:1.4em 0 1.7em; font-family:var(--body); font-size:clamp(16px, 4.6vw, 22px); line-height:1.4; font-weight:500; text-wrap:balance; }
+  button, .btn { appearance:none; border:0; background:var(--red); color:#f6e9e9; font-family:var(--body); font-style:italic; font-weight:600;
+           font-size:clamp(22px, 6.4vw, 30px); line-height:1; padding:.55em 1.7em .6em; border-radius:999px; cursor:pointer; text-decoration:none; }
+  .link { display:block; margin-top:1.6em; color:#8a8a8e; font-family:var(--body); font-style:italic; font-weight:500; font-size:clamp(14px, 3.9vw, 17px); text-decoration:underline; }
+
+  #hud { position:fixed; left:0; right:0; bottom:0; z-index:9; padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+         display:flex; flex-direction:column; align-items:center; gap:10px; pointer-events:none; }
+  #hint { background:rgba(0,0,0,.65); color:#fff; padding:10px 18px; border-radius:999px; font-family:var(--body); font-size:15px; font-weight:500; transition:opacity .3s; }
+  #hint.off { opacity:0; }
+  #sound { pointer-events:auto; position:fixed; top:calc(14px + env(safe-area-inset-top)); right:14px; z-index:11;
+           width:46px; height:46px; padding:0; font-size:22px; font-style:normal; background:rgba(0,0,0,.6); display:none; }
+  #loading { position:fixed; inset:0; z-index:12; background:var(--bg); color:var(--ink); display:none; align-items:center; justify-content:center; font-family:var(--body); font-weight:600; font-size:18px; }
+  .a-enter-vr, .a-enter-ar { display:none !important; }
+  video#vid { position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; }
+</style>
+</head>
+<body>
+
+<div class="layer" id="start">
+  <div class="brand"><div class="ttl"><h1>Yaşam Çarkı</h1><div class="stamp">ZOETROPE<svg class="star" viewBox="0 0 100 99.45" aria-hidden="true"><path fill="currentColor" d="M58.69 52.15 L65.64 2.69 L46.52 0.00 L39.57 49.47Z M50.81 60.32 L100.00 51.64 L96.65 32.63 L47.45 41.30Z M40.61 55.34 L64.06 99.45 L81.11 90.38 L57.65 46.28Z M42.18 44.10 L7.48 80.04 L21.37 93.45 L56.07 57.52Z M53.36 42.13 L8.46 20.24 L0.00 37.59 L44.90 59.49Z"/></svg></div></div></div>
+  <p class="lead">Başla'ya dokun, kamerana izin ver ve kamerayı afişe doğrult. Animasyon afişin üzerinde canlanacak.</p>
+  <button id="go">Başla</button>
+  <a class="link" href="assets/animasyon.mp4">Kamera olmadan videoyu izle.</a>
+</div>
+
+<div class="layer" id="error" hidden>
+  <div class="brand" style="font-size:clamp(22px,7vw,40px)"><div class="ttl" style="margin:0"><h1 style="white-space:normal">Kameraya erişilemedi</h1></div></div>
+  <p class="lead" id="errmsg">AR için kamera izni gerekiyor. Tarayıcı ayarlarından izin verip sayfayı yenileyebilir ya da videoyu doğrudan izleyebilirsin.</p>
+  <a class="btn" href="assets/animasyon.mp4">Videoyu izle</a>
+</div>
+
+<div id="loading">Yükleniyor…</div>
+<button id="sound" aria-label="Sesi aç/kapat">🔇</button>
+<div id="hud"><div id="hint" class="off">Kamerayı afişe doğrult</div></div>
+
+<video id="vid" src="assets/animasyon.mp4" loop playsinline webkit-playsinline muted preload="auto"></video>
+
+<a-scene id="scene"
+  mindar-image="imageTargetSrc: assets/poster.mind; autoStart: false; uiLoading: no; uiScanning: no; uiError: no; filterMinCF: 0.0005; filterBeta: 20; missTolerance: 8; warmupTolerance: 3;"
+  embedded vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  <a-entity mindar-image-target="targetIndex: 0" id="target">
+    <!--
+      Afiş 64x90 cm  -> genişlik = 1 birim, yükseklik = 90/64 = 1.40625
+      Video 9:16 (1080x1920), afişin tam yükseklikte MERKEZ kırpması ile birebir örtüşür:
+      yükseklik = 1.40625, genişlik = 1.40625 x 9/16 = 0.79102 (afişin ortasında, yanlarda ~%10'ar afiş görünür)
+    -->
+    <a-plane id="plane" position="0 0 0.001" width="0.79102" height="1.40625" material="shader: flat; src: #vid; transparent: false"></a-plane>
+  </a-entity>
+</a-scene>
+
+<script>
+(function () {
+  var vid = document.getElementById('vid');
+  var scene = document.getElementById('scene');
+  var hint = document.getElementById('hint');
+  var soundBtn = document.getElementById('sound');
+  var loading = document.getElementById('loading');
+  var started = false, found = false, done = false;
+
+  function setSoundIcon() { soundBtn.textContent = vid.muted ? '🔇' : '🔊'; }
+  soundBtn.addEventListener('click', function () { vid.muted = !vid.muted; setSoundIcon(); });
+
+  function showError(msg) {
+    if (done) return; done = true;
+    loading.style.display = 'none';
+    soundBtn.style.display = 'none';
+    if (typeof msg === 'string') document.getElementById('errmsg').textContent = msg;
+    document.getElementById('error').hidden = false;
+  }
+
+  scene.addEventListener('loaded', function () {
+    var target = document.getElementById('target');
+    target.addEventListener('targetFound', function () {
+      found = true; hint.classList.add('off');
+      var p = vid.play(); if (p && p.catch) p.catch(function () {});
+    });
+    target.addEventListener('targetLost', function () {
+      found = false; vid.pause(); hint.classList.remove('off');
+    });
+  });
+  scene.addEventListener('arError', function () { showError(); });
+
+  document.getElementById('go').addEventListener('click', function () {
+    if (started) return; started = true;
+    document.getElementById('start').hidden = true;
+    loading.style.display = 'flex';
+    loading.textContent = 'Yükleniyor…';
+
+    // Dokunuş sırasında videoya oynatma izni al (iOS/Android). MindAR'ı BEKLETMEZ.
+    vid.muted = false;
+    var p = vid.play();
+    if (p && p.then) {
+      p.then(function () { if (!found) { vid.pause(); vid.currentTime = 0; } })
+       .catch(function () { vid.muted = true; setSoundIcon(); });
+    }
+
+    // 30 sn içinde açılmazsa takılı kalma, hata göster
+    var timer = setTimeout(function () {
+      showError('AR başlatılamadı. Sayfayı yenileyip tekrar dene; kamera iznini ve internet bağlantını kontrol et.');
+    }, 30000);
+
+    var start = function () {
+      var sys = scene.systems['mindar-image-system'];
+      fetch('assets/poster.mind', { method: 'HEAD' }).then(function (r) {
+        if (!r.ok) throw new Error('poster.mind bulunamadı (' + r.status + ')');
+        loading.textContent = 'Kamera açılıyor…';
+        return sys.start();
+      }).then(function () {
+        clearTimeout(timer); if (done) return; done = true;
+        loading.style.display = 'none';
+        hint.classList.remove('off'); soundBtn.style.display = 'block'; setSoundIcon();
+      }).catch(function (e) {
+        clearTimeout(timer); done = false;
+        var m = (e && e.message && /poster\.mind/.test(e.message)) ? e.message : null;
+        showError(m || undefined);
+      });
+    };
+    if (scene.hasLoaded) start(); else scene.addEventListener('loaded', start);
+  });
+})();
+</script>
+</body>
+</html>
